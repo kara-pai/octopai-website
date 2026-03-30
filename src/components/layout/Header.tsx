@@ -14,10 +14,10 @@ export function Header() {
       <div className="container-main flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2 group">
           <Logo size={28} />
-          <span className="font-bold text-lg tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
+          <span className="font-bold text-lg tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-purple)] transition-colors">
             {SITE.name}
           </span>
-          <span className="tag tag-green text-[10px] hidden sm:inline-flex">{SITE.version}</span>
+          <span className="tag tag-purple text-[10px] hidden sm:inline-flex">{SITE.version}</span>
         </Link>
 
         {/* Desktop nav */}
@@ -26,7 +26,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
               {link.label}
             </Link>
@@ -42,7 +42,7 @@ export function Header() {
           </Link>
           <Link
             href="/signup"
-            className="px-4 py-2 text-sm font-medium bg-[var(--accent-cyan)] text-[var(--bg-primary)] rounded-lg hover:opacity-90 transition-opacity"
+            className="px-4 py-2 text-sm font-medium bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-lg hover:opacity-90 transition-opacity"
           >
             Get Started →
           </Link>
@@ -67,7 +67,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors py-1"
+                className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors py-1"
               >
                 {link.label}
               </Link>
@@ -78,7 +78,7 @@ export function Header() {
               </Link>
               <Link
                 href="/signup"
-                className="px-4 py-2 text-sm font-medium bg-[var(--accent-cyan)] text-[var(--bg-primary)] rounded-lg text-center"
+                className="px-4 py-2 text-sm font-medium bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-lg text-center"
               >
                 Get Started →
               </Link>

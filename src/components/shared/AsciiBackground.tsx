@@ -2,21 +2,45 @@
 
 import { useEffect, useRef } from 'react';
 
-// Alien code characters — mix of CJK-like symbols, box drawing, math, runic shapes
-// These look like indecipherable alien code streaming down the screen
-const ALIEN_CHARS =
-  'ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタ' +
-  'ダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマ' +
-  '01{}[]<>/\\|=+*~^&%$#@!?.:;' +
-  '∀∂∃∅∇∈∉∋∏∑∧∨∩∪∫≈≠≡≤≥⊂⊃⊄⊆⊇' +
-  '⌀⌁⌂⌃⌄⌇⌈⌉⌊⌋⌐⌑⌒⌓⎕⎖⎗⎘⎙⎚';
+// Real code snippets that float in the background — readable, meaningful
+const CODE_LINES = [
+  'const agent = new Agent({ model: "claude-4" });',
+  'await agent.train(dataset, { epochs: 28 });',
+  'export function deployToMarketplace(config) {',
+  '  return agent.execute(task, memory);',
+  'const revenue = await agent.getMetrics();',
+  'if (revenue.total > target) scale();',
+  'agent.memory.save("learned_pattern");',
+  'const experiments = agent.listActive();',
+  'await agent.publish({ platform: "hub" });',
+  'function optimize(feedback: Signal[]) {',
+  '  const strategy = agent.analyze(data);',
+  'export const SOUL = { goal: "revenue" };',
+  'agent.cron("0 10 * * *", runDaily);',
+  'const { earnings } = await checkout();',
+  'return { success: true, agent_id: id };',
+  'import { Octopai } from "@octopai/sdk";',
+  'const hub = Octopai.connect(API_KEY);',
+  'await hub.agents.deploy(myAgent);',
+  'const tasks = hub.queue.pending();',
+  'hub.on("revenue", (e) => log(e));',
+  'export default async function run() {',
+  '  const result = await agent.step();',
+  '  if (result.done) return result.output;',
+  '  return agent.iterate(result);',
+  '}',
+  'type Agent = { id: string; status: Status };',
+  'const config = loadConfig(".octopai");',
+  'await agent.connect({ marketplace: true });',
+];
 
-interface Column {
+interface FloatingLine {
   x: number;
   y: number;
+  text: string;
   speed: number;
-  chars: string[];
-  length: number;
+  opacity: number;
+  size: number;
 }
 
 export function AsciiBackground() {
@@ -29,84 +53,49 @@ export function AsciiBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const FONT_SIZE = 14;
-    const COL_WIDTH = FONT_SIZE;
+    let w = 0;
+    let h = 0;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
 
-    // Create falling columns
-    const columns: Column[] = [];
-    const colCount = Math.ceil(canvas.width / COL_WIDTH);
+    // Create floating code lines
+    const lineCount = Math.floor(w / 60);
+    const lines: FloatingLine[] = [];
 
-    for (let i = 0; i < colCount; i++) {
-      // Stagger start positions and speeds for organic feel
-      const length = 8 + Math.floor(Math.random() * 20);
-      const chars: string[] = [];
-      for (let j = 0; j < length; j++) {
-        chars.push(ALIEN_CHARS[Math.floor(Math.random() * ALIEN_CHARS.length)]);
-      }
-      columns.push({
-        x: i * COL_WIDTH,
-        y: -Math.random() * canvas.height * 2,
-        speed: 0.5 + Math.random() * 2,
-        chars,
-        length,
+    for (let i = 0; i < lineCount; i++) {
+      lines.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        text: CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)],
+        speed: 0.15 + Math.random() * 0.35,
+        opacity: 0.03 + Math.random() * 0.06,
+        size: 10 + Math.floor(Math.random() * 3),
       });
     }
 
     let animId: number;
 
     const draw = () => {
-      // Fade previous frame instead of clearing — creates trail effect
-      ctx.fillStyle = 'rgba(8, 8, 16, 0.12)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${FONT_SIZE}px monospace`;
+      ctx.clearRect(0, 0, w, h);
 
-      for (const col of columns) {
-        for (let j = 0; j < col.length; j++) {
-          const charY = col.y + j * FONT_SIZE;
+      for (const line of lines) {
+        ctx.font = `${line.size}px "Geist Mono", monospace`;
+        ctx.fillStyle = `rgba(167, 139, 250, ${line.opacity})`;
+        ctx.fillText(line.text, line.x, line.y);
 
-          // Skip off-screen chars
-          if (charY < -FONT_SIZE || charY > canvas.height + FONT_SIZE) continue;
+        // Drift upward slowly
+        line.y -= line.speed;
 
-          // Head character is brightest cyan, fades to purple down the tail
-          const progress = j / col.length;
-          if (j === 0) {
-            // Bright head — white-cyan
-            ctx.fillStyle = 'rgba(200, 240, 255, 0.9)';
-          } else if (progress < 0.3) {
-            // Near-head — bright cyan
-            ctx.fillStyle = `rgba(0, 229, 255, ${0.6 - progress * 0.8})`;
-          } else {
-            // Tail — fading purple
-            ctx.fillStyle = `rgba(124, 58, 255, ${0.35 - progress * 0.3})`;
-          }
-
-          ctx.fillText(col.chars[j], col.x, charY);
-
-          // Randomly mutate characters for alien effect
-          if (Math.random() < 0.02) {
-            col.chars[j] = ALIEN_CHARS[Math.floor(Math.random() * ALIEN_CHARS.length)];
-          }
-        }
-
-        // Move column down
-        col.y += col.speed;
-
-        // Reset when fully off screen
-        if (col.y - col.length * FONT_SIZE > canvas.height) {
-          col.y = -col.length * FONT_SIZE - Math.random() * 200;
-          col.speed = 0.5 + Math.random() * 2;
-          col.length = 8 + Math.floor(Math.random() * 20);
-          col.chars = [];
-          for (let j = 0; j < col.length; j++) {
-            col.chars.push(ALIEN_CHARS[Math.floor(Math.random() * ALIEN_CHARS.length)]);
-          }
+        // Reset when off screen
+        if (line.y < -20) {
+          line.y = h + 20;
+          line.x = Math.random() * w;
+          line.text = CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)];
         }
       }
 
@@ -125,7 +114,6 @@ export function AsciiBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.35 }}
       aria-hidden="true"
     />
   );

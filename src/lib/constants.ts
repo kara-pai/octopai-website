@@ -193,7 +193,7 @@ export const PRICING_PLANS = [
   {
     id: 'pro',
     name: 'Pro',
-    price: 197,
+    price: 79,
     period: 'one-time',
     description: 'Full access to everything',
     features: [
@@ -213,7 +213,7 @@ export const PRICING_PLANS = [
   {
     id: 'team',
     name: 'Team',
-    price: 497,
+    price: 297,
     period: 'one-time',
     description: 'For teams building with agents',
     features: [

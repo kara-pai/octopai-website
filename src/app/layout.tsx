@@ -11,9 +11,9 @@ const mono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Octopai — Everything you need to set up, run, and optimize AI agents',
+  title: 'Octopai — Train your AI agent. Launch a business.',
   description:
-    'The all-in-one platform for training, deploying, and managing AI agents. From zero to revenue in 28 days.',
+    'The 28-day system that turns AI agents into revenue machines. Set up, train, deploy, and earn. Your agent does the work.',
   keywords: ['AI agents', 'agent training', 'agent hub', 'side hustle', 'automation', 'revenue'],
 };
 
@@ -26,8 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`${mono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-mono bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <AsciiBackground />
-        <div className="scanline" />
-        <div className="grain-overlay" />
+        <div className="noise-overlay" />
         <Header />
         <main className="flex-1 relative z-10">{children}</main>
         <Footer />
