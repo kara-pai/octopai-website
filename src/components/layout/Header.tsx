@@ -12,12 +12,11 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--bg-primary)]/90 backdrop-blur-md">
       <div className="container-main flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 group">
-          <Logo size={28} />
-          <span className="font-bold text-lg tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-purple)] transition-colors">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <Logo size={30} />
+          <span className="font-bold text-lg tracking-tight text-[var(--text-primary)]">
             {SITE.name}
           </span>
-          <span className="tag tag-purple text-[10px] hidden sm:inline-flex">{SITE.version}</span>
         </Link>
 
         {/* Desktop nav */}
@@ -40,10 +39,7 @@ export function Header() {
           >
             Login
           </Link>
-          <Link
-            href="/signup"
-            className="px-4 py-2 text-sm font-medium bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-lg hover:opacity-90 transition-opacity"
-          >
+          <Link href="/signup" className="btn-primary !py-2 !px-5 !text-[13px]">
             Get Started →
           </Link>
         </div>
@@ -76,10 +72,7 @@ export function Header() {
               <Link href="/login" className="text-sm text-[var(--text-secondary)]">
                 Login
               </Link>
-              <Link
-                href="/signup"
-                className="px-4 py-2 text-sm font-medium bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-lg text-center"
-              >
+              <Link href="/signup" className="btn-primary text-center">
                 Get Started →
               </Link>
             </div>

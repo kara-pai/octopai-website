@@ -29,22 +29,10 @@ const allLessons: Lesson[] = PHASES.flatMap((phase) => {
   }));
 });
 
-const typeConfig: Record<LessonType, { icon: React.ReactNode; label: string; class: string }> = {
-  review: {
-    icon: <Eye size={12} />,
-    label: 'Review',
-    class: 'tag-blue',
-  },
-  auto: {
-    icon: <Bot size={12} />,
-    label: 'Auto',
-    class: 'tag-green',
-  },
-  revenue: {
-    icon: <DollarSign size={12} />,
-    label: 'Revenue',
-    class: 'tag-orange',
-  },
+const typeConfig: Record<LessonType, { icon: React.ReactNode; label: string }> = {
+  review: { icon: <Eye size={10} />, label: 'Human' },
+  auto: { icon: <Bot size={10} />, label: 'Machine' },
+  revenue: { icon: <DollarSign size={10} />, label: 'Revenue' },
 };
 
 export function CurriculumSection() {
@@ -58,8 +46,8 @@ export function CurriculumSection() {
     <section id="curriculum" className="py-20">
       <div className="container-main">
         <div className="text-center mb-8">
-          <p className="text-xs uppercase tracking-widest text-[var(--accent-blue)] mb-2">
-            // curriculum
+          <p className="text-xs uppercase tracking-widest text-[var(--accent)] mb-2 font-semibold">
+            Curriculum
           </p>
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="gradient-text">28 Lessons</span> to Agent Revenue
@@ -73,10 +61,10 @@ export function CurriculumSection() {
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           <button
             onClick={() => setActivePhase(null)}
-            className={`px-3 py-1.5 rounded-lg text-xs transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activePhase === null
-                ? 'bg-[var(--accent-cyan)] text-[var(--bg-primary)]'
-                : 'bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border)] hover:text-[var(--text-primary)]'
             }`}
           >
             All
@@ -85,10 +73,10 @@ export function CurriculumSection() {
             <button
               key={p.id}
               onClick={() => setActivePhase(p.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 activePhase === p.id
-                  ? 'bg-[var(--accent-cyan)] text-[var(--bg-primary)]'
-                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border border-[var(--border)] hover:text-[var(--text-primary)]'
               }`}
             >
               {p.name}
@@ -98,9 +86,8 @@ export function CurriculumSection() {
 
         {/* Lesson list */}
         <div className="max-w-2xl mx-auto">
-          <div className="border border-[var(--border)] rounded-xl overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-[48px_1fr_80px_80px] gap-2 px-4 py-2 bg-[var(--bg-secondary)] text-[10px] text-[var(--text-muted)] uppercase tracking-wider">
+          <div className="card overflow-hidden">
+            <div className="grid grid-cols-[48px_1fr_80px_80px] gap-2 px-4 py-2.5 bg-[var(--bg-secondary)] text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
               <span>Day</span>
               <span>Lesson</span>
               <span className="text-center">Type</span>
@@ -117,21 +104,21 @@ export function CurriculumSection() {
                   <span className="text-xs font-mono text-[var(--text-muted)]">
                     {String(lesson.day).padStart(2, '0')}
                   </span>
-                  <span className="text-sm text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors flex items-center gap-2">
+                  <span className="text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex items-center gap-2">
                     <BookOpen size={12} className="text-[var(--text-muted)]" />
                     {lesson.title}
                   </span>
                   <span className="flex justify-center">
-                    <span className={`tag ${tc.class} text-[10px] gap-1`}>
+                    <span className="tag text-[10px] gap-1">
                       {tc.icon}
                       {tc.label}
                     </span>
                   </span>
                   <span className="flex justify-center gap-1">
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-hover)] text-[var(--text-muted)]">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-secondary)] text-[var(--text-muted)]">
                       H
                     </span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-hover)] text-[var(--text-muted)]">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-machine)] text-[var(--text-inverse)]">
                       M
                     </span>
                   </span>

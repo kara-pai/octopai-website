@@ -2,36 +2,29 @@
 
 import { useEffect, useRef } from 'react';
 
-// Real code snippets that float in the background — readable, meaningful
-const CODE_LINES = [
-  'const agent = new Agent({ model: "claude-4" });',
-  'await agent.train(dataset, { epochs: 28 });',
-  'export function deployToMarketplace(config) {',
-  '  return agent.execute(task, memory);',
-  'const revenue = await agent.getMetrics();',
-  'if (revenue.total > target) scale();',
-  'agent.memory.save("learned_pattern");',
-  'const experiments = agent.listActive();',
-  'await agent.publish({ platform: "hub" });',
-  'function optimize(feedback: Signal[]) {',
-  '  const strategy = agent.analyze(data);',
-  'export const SOUL = { goal: "revenue" };',
-  'agent.cron("0 10 * * *", runDaily);',
-  'const { earnings } = await checkout();',
-  'return { success: true, agent_id: id };',
-  'import { Octopai } from "@octopai/sdk";',
-  'const hub = Octopai.connect(API_KEY);',
-  'await hub.agents.deploy(myAgent);',
-  'const tasks = hub.queue.pending();',
-  'hub.on("revenue", (e) => log(e));',
-  'export default async function run() {',
-  '  const result = await agent.step();',
-  '  if (result.done) return result.output;',
-  '  return agent.iterate(result);',
-  '}',
-  'type Agent = { id: string; status: Status };',
-  'const config = loadConfig(".octopai");',
-  'await agent.connect({ marketplace: true });',
+// Agent-readable code — structured configs, function calls, data flows
+// This is what an agent's "brain" looks like when processing
+const AGENT_CODE = [
+  '{"task":"analyze_market","status":"running","confidence":0.94}',
+  'agent.execute(plan, {retry: 3, timeout: 30000})',
+  'SOUL.md → goal: "generate_revenue" | mode: "autonomous"',
+  'memory.store("pattern_437", {type: "success", revenue: 2400})',
+  'fn deploy(config: AgentConfig) -> Result<Revenue>',
+  '{"experiment":"notion_templates","day":22,"revenue":"$1.2K"}',
+  'cron: 0 10 * * * → agent.run_daily_audit()',
+  'hub.publish(agent_id, {marketplace: true, price: 79})',
+  'validate(input) → transform(data) → distribute(output)',
+  'AGENTS.md → skills: [research, create, distribute, sell]',
+  'if confidence > 0.8 { scale(experiment) } else { iterate() }',
+  '{"phase":3,"name":"distribute","progress":0.72,"active":true}',
+  'agent.feedback_loop(buyer_signals, iteration_count)',
+  'export const MEMORY = { learned: 847, applied: 612 }',
+  'security.verify(credentials) → access.grant("hub")',
+  'pipeline: idea → validate → build → launch → revenue',
+  'agent.optimize({ metric: "conversion", target: 0.12 })',
+  '{"agents_active":2400,"total_revenue":"$890K","uptime":99.2}',
+  'hub.connect(API_KEY) → agent.train(program_28_day)',
+  'result = await experiment.run({platform: "gumroad"})',
 ];
 
 interface FloatingLine {
@@ -63,18 +56,18 @@ export function AsciiBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Create floating code lines
-    const lineCount = Math.floor(w / 60);
+    // Sparse floating code lines
+    const lineCount = Math.floor(w / 80);
     const lines: FloatingLine[] = [];
 
     for (let i = 0; i < lineCount; i++) {
       lines.push({
-        x: Math.random() * w,
+        x: Math.random() * w * 0.8,
         y: Math.random() * h,
-        text: CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)],
-        speed: 0.15 + Math.random() * 0.35,
-        opacity: 0.03 + Math.random() * 0.06,
-        size: 10 + Math.floor(Math.random() * 3),
+        text: AGENT_CODE[Math.floor(Math.random() * AGENT_CODE.length)],
+        speed: 0.08 + Math.random() * 0.15,
+        opacity: 0.04 + Math.random() * 0.04,
+        size: 10 + Math.floor(Math.random() * 2),
       });
     }
 
@@ -85,17 +78,15 @@ export function AsciiBackground() {
 
       for (const line of lines) {
         ctx.font = `${line.size}px "Geist Mono", monospace`;
-        ctx.fillStyle = `rgba(167, 139, 250, ${line.opacity})`;
+        ctx.fillStyle = `rgba(26, 26, 23, ${line.opacity})`;
         ctx.fillText(line.text, line.x, line.y);
 
-        // Drift upward slowly
         line.y -= line.speed;
 
-        // Reset when off screen
         if (line.y < -20) {
           line.y = h + 20;
-          line.x = Math.random() * w;
-          line.text = CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)];
+          line.x = Math.random() * w * 0.8;
+          line.text = AGENT_CODE[Math.floor(Math.random() * AGENT_CODE.length)];
         }
       }
 

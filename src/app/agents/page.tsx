@@ -20,49 +20,38 @@ export default function AgentsPage() {
   return (
     <div className="pt-24 pb-16">
       <div className="container-main">
-        {/* Header */}
         <div className="mb-8">
-          <p className="text-xs uppercase tracking-widest text-[var(--accent-blue)] mb-2">
-            // agent_hub
+          <p className="text-xs uppercase tracking-widest text-[var(--accent)] mb-2 font-semibold">
+            Agent Hub
           </p>
           <h1 className="text-2xl md:text-3xl font-bold mb-2">
-            <span className="gradient-text">Agent Hub</span>
+            Browse <span className="gradient-text">Agents</span>
           </h1>
           <p className="text-sm text-[var(--text-secondary)] max-w-lg">
-            Browse, discover, and deploy pre-built AI agents. Each agent comes
-            with architecture files, training data, and revenue strategies.
+            Discover and deploy pre-built AI agents. Each comes with architecture files, training data, and revenue strategies.
           </p>
         </div>
 
-        {/* Search & Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
-            <Search
-              size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
-            />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search agents..."
-              className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-cyan)] transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             />
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Filter size={14} className="text-[var(--text-muted)]" />
-            <span className="text-xs text-[var(--text-muted)] mr-1">Filter:</span>
           </div>
         </div>
 
-        {/* Category pills */}
         <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => setActiveCategory(null)}
-            className={`px-3 py-1.5 rounded-lg text-xs transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               !activeCategory
-                ? 'bg-[var(--accent-cyan)] text-[var(--bg-primary)]'
-                : 'bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                : 'bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
             All
@@ -71,56 +60,50 @@ export default function AgentsPage() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 activeCategory === cat.id
-                  ? 'bg-[var(--accent-cyan)] text-[var(--bg-primary)]'
-                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                  : 'bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              {cat.icon} {cat.label}
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Agent grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((agent) => (
-            <div key={agent.id} className="glow-card p-6 flex flex-col group cursor-pointer">
+            <div key={agent.id} className="card p-6 flex flex-col group cursor-pointer">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-[var(--bg-hover)] flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                  &lt;/&gt;
+                <div className="w-10 h-10 rounded-full bg-[var(--accent-light)] flex items-center justify-center text-sm font-bold text-[var(--accent)] group-hover:scale-105 transition-transform">
+                  {agent.name[0]}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                     {agent.name}
                   </h3>
                   <p className="text-xs text-[var(--text-muted)]">{agent.handle}</p>
                 </div>
-                <span className="tag tag-green text-[10px]">{agent.status}</span>
+                <span className="tag text-[10px]">{agent.status}</span>
               </div>
-
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4 flex-1">
-                {agent.description}
-              </p>
-
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4 flex-1">{agent.description}</p>
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="bg-[var(--bg-hover)] rounded-lg p-2 text-center">
-                  <TrendingUp size={12} className="mx-auto mb-1 text-[var(--accent-cyan)]" />
-                  <p className="text-xs font-semibold text-[var(--accent-cyan)]">{agent.revenue}</p>
+                <div className="bg-[var(--bg-secondary)] rounded-lg p-2 text-center">
+                  <TrendingUp size={12} className="mx-auto mb-1 text-[var(--accent)]" />
+                  <p className="text-xs font-semibold text-[var(--accent)]">{agent.revenue}</p>
                 </div>
-                <div className="bg-[var(--bg-hover)] rounded-lg p-2 text-center">
-                  <Star size={12} className="mx-auto mb-1 text-[var(--accent-orange)]" />
-                  <p className="text-xs font-semibold text-[var(--text-primary)]">{agent.rating}★</p>
+                <div className="bg-[var(--bg-secondary)] rounded-lg p-2 text-center">
+                  <Star size={12} className="mx-auto mb-1 text-[var(--text-muted)]" />
+                  <p className="text-xs font-semibold">{agent.rating}★</p>
                 </div>
-                <div className="bg-[var(--bg-hover)] rounded-lg p-2 text-center">
-                  <ShoppingBag size={12} className="mx-auto mb-1 text-[var(--accent-blue)]" />
-                  <p className="text-xs font-semibold text-[var(--text-primary)]">{agent.sales}</p>
+                <div className="bg-[var(--bg-secondary)] rounded-lg p-2 text-center">
+                  <ShoppingBag size={12} className="mx-auto mb-1 text-[var(--text-muted)]" />
+                  <p className="text-xs font-semibold">{agent.sales}</p>
                 </div>
               </div>
-
               <div className="flex flex-wrap gap-1.5">
                 {agent.tags.map((tag) => (
-                  <span key={tag} className="tag tag-blue text-[10px]">{tag}</span>
+                  <span key={tag} className="tag-muted tag text-[10px]">{tag}</span>
                 ))}
               </div>
             </div>
@@ -129,9 +112,7 @@ export default function AgentsPage() {
 
         {filtered.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-sm text-[var(--text-muted)]">
-              No agents found. Try a different search or filter.
-            </p>
+            <p className="text-sm text-[var(--text-muted)]">No agents found.</p>
           </div>
         )}
       </div>

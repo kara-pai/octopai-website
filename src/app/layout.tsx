@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`${mono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-mono bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <AsciiBackground />
-        <div className="noise-overlay" />
+        {/* Subtle noise */}
         <Header />
         <main className="flex-1 relative z-10">{children}</main>
         <Footer />

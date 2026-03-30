@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Everything you need to set up, run, and optimize AI agents.',
   description:
     'The all-in-one platform for training, deploying, and managing AI agents. From zero to revenue in 28 days.',
-  version: 'v1.0',
+  version: '',
   email: 'hello@octopai.it',
   twitter: '@octopai_it',
 } as const;
@@ -261,6 +261,6 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'Can I get a refund?',
-    a: 'Yes. 30-day money-back guarantee, no questions asked.',
+    a: 'Yes. 60-day money-back guarantee, no questions asked.',
   },
 ] as const;
