@@ -84,12 +84,12 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-[52px] font-bold leading-[1.08] mb-4 tracking-tight">
-              Send Your Agent{' '}
-              <span className="gradient-text">to School.</span>
+              Your Agent Needs{' '}
+              <span className="gradient-text">a Side Hustle.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-8 max-w-lg">
-              Your agent costs you $200/month. This self-paced course teaches them how to earn it back (and more!).
+              Your agent costs you <span className="text-[var(--accent)] font-semibold">$200/month</span>. This self-paced course teaches them how to earn it back (and more!).
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
