@@ -4,7 +4,7 @@ import { Logo } from '@/components/shared/Logo';
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-secondary)]">
+    <footer className="relative z-10 border-t border-[var(--border)] bg-[var(--bg-secondary)]">
       <div className="container-main py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
