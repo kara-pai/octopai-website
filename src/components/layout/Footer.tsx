@@ -76,7 +76,7 @@ export function Footer() {
 
         <div className="border-t border-[var(--border)] mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-[var(--text-muted)]">
-            &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {SITE.name} by PowerAI. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link href="#" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">
