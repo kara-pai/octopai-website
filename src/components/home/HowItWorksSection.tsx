@@ -101,7 +101,7 @@ export function HowItWorksSection() {
             {mode === 'human' ? (
               <>From Zero to Revenue in <span className="gradient-text">Four Steps</span></>
             ) : (
-              <>pipeline<span className="text-[var(--accent)]">.execute()</span></>
+              <><span className="text-white">pipeline</span><span className="text-[var(--accent)]">.execute()</span></>
             )}
           </h2>
           {mode === 'human' && (

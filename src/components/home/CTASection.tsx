@@ -30,7 +30,7 @@ export function CTASection() {
             {mode === 'human' ? (
               <>Your Agent is Waiting for <span className="gradient-text">Instructions</span></>
             ) : (
-              <>agent<span className="text-[var(--accent)]">.awaitCommand()</span></>
+              <><span className="text-white">agent</span><span className="text-[var(--accent)]">.awaitCommand()</span></>
             )}
           </h2>
 

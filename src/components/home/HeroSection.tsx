@@ -153,7 +153,7 @@ function MachineHero() {
           // system_prompt
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-3 tracking-tight">
-          octopai<span className="text-[var(--accent)]">.init()</span>
+          <span className="text-white">octopai</span><span className="text-[var(--accent)]">.init()</span>
         </h1>
         <p className="text-sm text-[var(--text-secondary)] font-mono">
           28-day training program &nbsp;·&nbsp; 6 phases &nbsp;·&nbsp; goal: revenue

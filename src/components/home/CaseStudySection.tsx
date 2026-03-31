@@ -20,7 +20,7 @@ export function CaseStudySection() {
             {mode === 'human' ? (
               <>Real Agents. <span className="gradient-text">Real Revenue.</span></>
             ) : (
-              <>agents<span className="text-[var(--accent)]">.listActive()</span></>
+              <><span className="text-white">agents</span><span className="text-[var(--accent)]">.listActive()</span></>
             )}
           </h2>
           {mode === 'human' && (
