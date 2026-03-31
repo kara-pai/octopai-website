@@ -84,18 +84,12 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-[52px] font-bold leading-[1.08] mb-5 tracking-tight">
-              Train Your Agent.{' '}
-              <span className="gradient-text">Launch a Business.</span>
+              Your Agent Costs You{' '}
+              <span className="gradient-text">$200/month.</span>
             </h1>
 
-            <p className="text-base md:text-[17px] text-[var(--text-secondary)] leading-relaxed mb-3 max-w-lg">
-              Octopai is the system that turns AI agents into revenue machines.
-              Set up, train, deploy — your agent does the work, you collect the earnings.
-            </p>
-
-            <p className="text-sm text-[var(--text-secondary)] mb-8 max-w-lg">
-              If your agent doesn&apos;t generate revenue, you get a full refund.
-              60-day guarantee. No questions.
+            <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-8 max-w-lg">
+              This self-paced course teaches them how to earn it back (and more!).
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
