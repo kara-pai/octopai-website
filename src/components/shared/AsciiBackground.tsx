@@ -2,38 +2,21 @@
 
 import { useEffect, useRef } from 'react';
 
-// Agent-readable code — structured configs, function calls, data flows
-// This is what an agent's "brain" looks like when processing
-const AGENT_CODE = [
-  '{"task":"analyze_market","status":"running","confidence":0.94}',
-  'agent.execute(plan, {retry: 3, timeout: 30000})',
-  'SOUL.md → goal: "generate_revenue" | mode: "autonomous"',
-  'memory.store("pattern_437", {type: "success", revenue: 2400})',
-  'fn deploy(config: AgentConfig) -> Result<Revenue>',
-  '{"experiment":"notion_templates","day":22,"revenue":"$1.2K"}',
-  'cron: 0 10 * * * → agent.run_daily_audit()',
-  'hub.publish(agent_id, {marketplace: true, price: 79})',
-  'validate(input) → transform(data) → distribute(output)',
-  'AGENTS.md → skills: [research, create, distribute, sell]',
-  'if confidence > 0.8 { scale(experiment) } else { iterate() }',
-  '{"phase":3,"name":"distribute","progress":0.72,"active":true}',
-  'agent.feedback_loop(buyer_signals, iteration_count)',
-  'export const MEMORY = { learned: 847, applied: 612 }',
-  'security.verify(credentials) → access.grant("hub")',
-  'pipeline: idea → validate → build → launch → revenue',
-  'agent.optimize({ metric: "conversion", target: 0.12 })',
-  '{"agents_active":2400,"total_revenue":"$890K","uptime":99.2}',
-  'hub.connect(API_KEY) → agent.train(program_28_day)',
-  'result = await experiment.run({platform: "gumroad"})',
-];
+// Agent code characters — code symbols, brackets, operators, short keywords
+// Falls in vertical columns like the Matrix but with real code feel
+const CODE_CHARS =
+  '{}[]()<>=+-*/|&^%$#@!?:;.,~01' +
+  'abcdefghijklmnopqrstuvwxyz' +
+  'fnletconstifelse=>{};()' +
+  'async await return export import' +
+  '0123456789';
 
-interface FloatingLine {
+interface Column {
   x: number;
   y: number;
-  text: string;
   speed: number;
-  opacity: number;
-  size: number;
+  length: number;
+  chars: string[];
 }
 
 export function AsciiBackground() {
@@ -46,6 +29,9 @@ export function AsciiBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const FONT_SIZE = 13;
+    const COL_GAP = FONT_SIZE + 2;
+
     let w = 0;
     let h = 0;
 
@@ -56,37 +42,71 @@ export function AsciiBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Sparse floating code lines
-    const lineCount = Math.floor(w / 80);
-    const lines: FloatingLine[] = [];
+    // Build columns
+    const colCount = Math.ceil(w / COL_GAP);
+    const columns: Column[] = [];
 
-    for (let i = 0; i < lineCount; i++) {
-      lines.push({
-        x: Math.random() * w * 0.8,
-        y: Math.random() * h,
-        text: AGENT_CODE[Math.floor(Math.random() * AGENT_CODE.length)],
-        speed: 0.08 + Math.random() * 0.15,
-        opacity: 0.04 + Math.random() * 0.04,
-        size: 10 + Math.floor(Math.random() * 2),
+    const makeChars = (len: number) => {
+      const chars: string[] = [];
+      for (let j = 0; j < len; j++) {
+        chars.push(CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]);
+      }
+      return chars;
+    };
+
+    for (let i = 0; i < colCount; i++) {
+      const length = 6 + Math.floor(Math.random() * 18);
+      columns.push({
+        x: i * COL_GAP,
+        y: -Math.random() * h * 2,
+        speed: 0.3 + Math.random() * 1.2,
+        length,
+        chars: makeChars(length),
       });
     }
 
     let animId: number;
 
     const draw = () => {
-      ctx.clearRect(0, 0, w, h);
+      // Soft fade instead of hard clear — leaves gentle trails
+      ctx.fillStyle = 'rgba(250, 250, 247, 0.15)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = `${FONT_SIZE}px "Geist Mono", monospace`;
 
-      for (const line of lines) {
-        ctx.font = `${line.size}px "Geist Mono", monospace`;
-        ctx.fillStyle = `rgba(26, 26, 23, ${line.opacity})`;
-        ctx.fillText(line.text, line.x, line.y);
+      for (const col of columns) {
+        for (let j = 0; j < col.length; j++) {
+          const charY = col.y + j * FONT_SIZE;
+          if (charY < -FONT_SIZE || charY > h + FONT_SIZE) continue;
 
-        line.y -= line.speed;
+          const progress = j / col.length;
 
-        if (line.y < -20) {
-          line.y = h + 20;
-          line.x = Math.random() * w * 0.8;
-          line.text = AGENT_CODE[Math.floor(Math.random() * AGENT_CODE.length)];
+          if (j === 0) {
+            // Head — darkest, most visible
+            ctx.fillStyle = 'rgba(212, 98, 10, 0.14)';
+          } else if (progress < 0.25) {
+            // Near head — amber tinted
+            ctx.fillStyle = `rgba(212, 98, 10, ${0.09 - progress * 0.15})`;
+          } else {
+            // Tail — fading neutral
+            ctx.fillStyle = `rgba(26, 26, 23, ${0.06 - progress * 0.04})`;
+          }
+
+          ctx.fillText(col.chars[j], col.x, charY);
+
+          // Randomly mutate chars
+          if (Math.random() < 0.015) {
+            col.chars[j] = CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
+          }
+        }
+
+        col.y += col.speed;
+
+        // Reset off-screen columns
+        if (col.y - col.length * FONT_SIZE > h) {
+          col.y = -col.length * FONT_SIZE - Math.random() * 300;
+          col.speed = 0.3 + Math.random() * 1.2;
+          col.length = 6 + Math.floor(Math.random() * 18);
+          col.chars = makeChars(col.length);
         }
       }
 

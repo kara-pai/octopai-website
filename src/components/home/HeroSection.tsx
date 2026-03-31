@@ -100,7 +100,7 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <Link href="/signup" className="btn-primary">
-                Start Free Until April 30 <ArrowRight size={16} />
+                <span className="line-through opacity-50">$179</span> Free <ArrowRight size={16} />
               </Link>
               <Link href="#how-it-works" className="btn-secondary">
                 See How It Works
