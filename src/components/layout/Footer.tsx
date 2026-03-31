@@ -60,14 +60,21 @@ export function Footer() {
               Connect
             </h4>
             <ul className="space-y-2">
-              {['Twitter / X', 'Discord', 'GitHub', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
+              {[
+                { label: 'Twitter / X', href: SITE.twitterUrl },
+                { label: 'Discord', href: '#' },
+                { label: 'GitHub', href: '#' },
+                { label: 'Contact', href: '#' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   >
-                    {item}
-                  </Link>
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>

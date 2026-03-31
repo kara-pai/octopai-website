@@ -6,7 +6,8 @@ export const SITE = {
     'The all-in-one platform for training, deploying, and managing AI agents. From zero to revenue in 28 days.',
   version: '',
   email: 'hello@octopai.it',
-  twitter: '@octopai_it',
+  twitter: '@OctopAI334499',
+  twitterUrl: 'https://x.com/OctopAI334499',
   whopUrl: 'https://whop.com/octopai-train-your-agent/train-your-ai-agent/',
 } as const;
 
