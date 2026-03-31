@@ -61,9 +61,9 @@ export function Header() {
             </span>
           </button>
 
-          <Link href="/signup" className="btn-primary !py-2 !px-5 !text-[13px]">
+          <a href={SITE.whopUrl} target="_blank" rel="noopener noreferrer" className="btn-primary !py-2 !px-5 !text-[13px]">
             Get Started →
-          </Link>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -116,9 +116,9 @@ export function Header() {
                 </span>
               </button>
 
-              <Link href="/signup" className="btn-primary text-center">
+              <a href={SITE.whopUrl} target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
                 Get Started →
-              </Link>
+              </a>
             </div>
           </nav>
         </div>

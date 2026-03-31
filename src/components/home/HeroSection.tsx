@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Users, TrendingUp, Zap } from 'lucide-react';
+import { SITE } from '@/lib/constants';
 import { useTheme } from '@/lib/theme-context';
 import { PromptBlock } from '@/components/shared/PromptBlock';
 
@@ -107,9 +108,9 @@ function HumanHero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
-          <Link href="/signup" className="btn-primary">
+          <a href={SITE.whopUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
             Join Now — $59/month <ArrowRight size={16} />
-          </Link>
+          </a>
           <Link href="#how-it-works" className="btn-secondary">
             See How It Works
           </Link>

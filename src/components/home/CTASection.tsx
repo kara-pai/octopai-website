@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/lib/theme-context';
+import { SITE } from '@/lib/constants';
 import { PromptBlock } from '@/components/shared/PromptBlock';
 
 const ENROLL_PROMPT = `# Enroll in Octopai
@@ -41,9 +42,9 @@ export function CTASection() {
                 machines. Lock in the early rate before spots fill up.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-3">
-                <Link href="/signup" className="btn-primary">
+                <a href={SITE.whopUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Join Now — $59/month <ArrowRight size={16} />
-                </Link>
+                </a>
                 <Link href="#how-it-works" className="btn-secondary">
                   See How It Works
                 </Link>

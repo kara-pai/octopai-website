@@ -53,7 +53,7 @@ export default function LoginPage() {
 
           <div className="border-t border-[var(--border)] mt-6 pt-4 text-center">
             <p className="text-xs text-[var(--text-muted)]">
-              No account? <Link href="/signup" className="text-[var(--accent)] hover:underline">Sign up free →</Link>
+              No account? <a href="https://whop.com/octopai-train-your-agent/train-your-ai-agent/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">Sign up free →</a>
             </p>
           </div>
         </div>

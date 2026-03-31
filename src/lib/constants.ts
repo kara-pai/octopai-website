@@ -7,6 +7,7 @@ export const SITE = {
   version: '',
   email: 'hello@octopai.it',
   twitter: '@octopai_it',
+  whopUrl: 'https://whop.com/octopai-train-your-agent/train-your-ai-agent/',
 } as const;
 
 export const NAV_LINKS = [
