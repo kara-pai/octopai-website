@@ -38,7 +38,7 @@ export function CTASection() {
           {mode === 'human' ? (
             <>
               <p className="text-sm text-[var(--text-secondary)] mb-8 leading-relaxed">
-                2,400+ operators are already turning AI agents into revenue
+                42 operators are already turning AI agents into revenue
                 machines. Lock in the early rate before spots fill up.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-3">

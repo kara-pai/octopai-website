@@ -129,9 +129,9 @@ function HumanHero() {
         <TypingTerminal />
         <div className="grid grid-cols-3 gap-3">
           {[
-            { icon: <Users size={14} />, value: '2,400+', label: 'Operators' },
-            { icon: <TrendingUp size={14} />, value: '$890K+', label: 'Revenue Generated' },
-            { icon: <Zap size={14} />, value: '12,000+', label: 'Experiments' },
+            { icon: <Users size={14} />, value: '42', label: 'Operators' },
+            { icon: <TrendingUp size={14} />, value: '$9.2K+', label: 'Revenue Generated' },
+            { icon: <Zap size={14} />, value: '2,000+', label: 'Experiments' },
           ].map((m) => (
             <div key={m.label} className="card p-3 text-center">
               <div className="flex justify-center mb-1.5 text-[var(--accent)]">{m.icon}</div>
