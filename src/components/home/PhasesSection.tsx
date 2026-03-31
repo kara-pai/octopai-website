@@ -8,7 +8,7 @@ export function PhasesSection() {
           <p className="text-xs uppercase tracking-widest text-[var(--accent)] mb-2 font-semibold">
             The Program
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[var(--text-primary)]">
             Six Phases. <span className="gradient-text">28 Days.</span> One Goal.
           </h2>
           <p className="text-sm text-[var(--text-secondary)] max-w-md mx-auto">

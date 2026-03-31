@@ -86,6 +86,12 @@
   border-color: rgba(232, 122, 32, 0.25);
 }
 
+[data-mode="machine"] h1,
+[data-mode="machine"] h2,
+[data-mode="machine"] h3 {
+  color: #ffffff !important;
+}
+
 @theme inline {
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
