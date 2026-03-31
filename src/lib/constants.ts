@@ -13,8 +13,6 @@ export const NAV_LINKS = [
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Phases', href: '#phases' },
   { label: 'Agent Hub', href: '/agents' },
-  { label: 'Training', href: '/training' },
-  { label: 'Pricing', href: '/pricing' },
 ] as const;
 
 export const PHASES = [
