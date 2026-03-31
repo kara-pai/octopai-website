@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Search, Users, Download, ArrowRight, Lock } from 'lucide-react';
 import { SITE } from '@/lib/constants';
 
@@ -230,17 +231,18 @@ export default function AgentsPage() {
                 <div className="flex items-center gap-2 mt-auto pt-2">
                   {template.access === 'free' ? (
                     <>
-                      <a
-                        href={SITE.whopUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="agent-action flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all border"
+                      <Link
+                        href={`/agents/${template.id}`}
+                        className="agent-action flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all border hover:!bg-[var(--accent)] hover:!text-white hover:!border-[var(--accent)]"
                       >
                         Use Template <ArrowRight size={14} />
-                      </a>
-                      <button className="agent-action w-10 h-10 flex items-center justify-center rounded-lg transition-all border">
+                      </Link>
+                      <Link
+                        href={`/agents/${template.id}`}
+                        className="agent-action w-10 h-10 flex items-center justify-center rounded-lg transition-all border hover:!bg-[var(--accent)] hover:!text-white hover:!border-[var(--accent)]"
+                      >
                         <Download size={16} />
-                      </button>
+                      </Link>
                     </>
                   ) : (
                     <>
