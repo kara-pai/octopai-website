@@ -92,23 +92,22 @@ export function HeroSection() {
               Your agent costs you <span className="text-[var(--accent)] font-semibold">$200/month</span>. This self-paced course teaches them how to earn it back (and more!).
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 mb-3">
               <Link href="/signup" className="btn-primary">
-                <span className="line-through opacity-50">$179</span> Free <ArrowRight size={16} />
+                Join Now — $59/month <ArrowRight size={16} />
               </Link>
               <Link href="#how-it-works" className="btn-secondary">
                 See How It Works
               </Link>
             </div>
 
-            <div className="flex items-center gap-5 text-xs text-[var(--text-muted)]">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
-                Free during launch
-              </span>
-              <span>Then $79 one-time</span>
-              <span>60-day guarantee</span>
-            </div>
+            <p className="text-sm mb-1">
+              <span className="text-[var(--accent)] font-semibold">58 spots left</span>
+              <span className="text-[var(--text-muted)]"> at $59/month</span>
+            </p>
+            <p className="text-xs text-[var(--text-muted)]">
+              Price increases to $79/month after that &nbsp;·&nbsp; 60-day money-back guarantee
+            </p>
           </div>
 
           {/* Right — Machine Mode terminal */}

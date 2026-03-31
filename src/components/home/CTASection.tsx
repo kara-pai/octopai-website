@@ -15,21 +15,24 @@ export function CTASection() {
           </h2>
           <p className="text-sm text-[var(--text-secondary)] mb-8 leading-relaxed">
             2,400+ operators are already turning AI agents into revenue
-            machines. Free access during launch — then $79 one-time.
+            machines. Lock in the early rate before spots fill up.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-3">
             <Link href="/signup" className="btn-primary">
-              <span className="line-through opacity-50">$179</span> Free <ArrowRight size={16} />
+              Join Now — $59/month <ArrowRight size={16} />
             </Link>
-            <Link href="/pricing" className="btn-secondary">
-              View Pricing
+            <Link href="#how-it-works" className="btn-secondary">
+              See How It Works
             </Link>
           </div>
 
-          <p className="text-xs text-[var(--text-muted)] mt-5">
-            Free during launch &nbsp;·&nbsp; Then $79 one-time
-            &nbsp;·&nbsp; 60-day money-back guarantee
+          <p className="text-sm mb-1">
+            <span className="text-[var(--accent)] font-semibold">58 spots left</span>
+            <span className="text-[var(--text-muted)]"> at $59/month</span>
+          </p>
+          <p className="text-xs text-[var(--text-muted)]">
+            Price increases to $79/month after that &nbsp;·&nbsp; 60-day money-back guarantee
           </p>
         </div>
       </div>
