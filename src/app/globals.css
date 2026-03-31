@@ -67,6 +67,23 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+[data-mode="machine"] .gradient-text {
+  background: linear-gradient(135deg, #fafaf7 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-mode="machine"] .machine-block {
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+[data-mode="machine"] .tag {
+  background: rgba(232, 122, 32, 0.15);
+  border-color: rgba(232, 122, 32, 0.25);
+}
+
 @theme inline {
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
