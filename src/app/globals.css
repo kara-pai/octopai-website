@@ -205,6 +205,59 @@ body {
   color: var(--text-primary);
 }
 
+/* Agent template cards — light in human, dark in machine */
+.agent-card {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.agent-card .agent-subtle {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.agent-card .agent-muted {
+  color: var(--text-muted);
+}
+
+.agent-card .agent-action {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.agent-card .agent-action:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+}
+
+[data-mode="machine"] .agent-card {
+  background: #141418;
+  color: #fafaf7;
+}
+
+[data-mode="machine"] .agent-card .agent-subtle {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-mode="machine"] .agent-card .agent-muted {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+[data-mode="machine"] .agent-card .agent-action {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-mode="machine"] .agent-card .agent-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

@@ -165,7 +165,7 @@ export default function AgentsPage() {
           {filtered.map((template) => (
             <div
               key={template.id}
-              className="rounded-2xl border border-[var(--border)] bg-[#141418] text-[#fafaf7] overflow-hidden flex flex-col"
+              className="agent-card rounded-2xl border border-[var(--border)] overflow-hidden flex flex-col"
             >
               {/* Accent top bar */}
               <div className="h-1 bg-[var(--accent)]" />
@@ -174,23 +174,23 @@ export default function AgentsPage() {
                 {/* Top row — agent count + category */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center">
+                    <div className="agent-subtle w-8 h-8 rounded-lg flex items-center justify-center border">
                       <Users size={16} className="text-[var(--accent)]" />
                     </div>
-                    <span className="text-xs font-mono text-white/60">
+                    <span className="text-xs font-mono agent-muted">
                       {template.agentCount} {template.agentCount === 1 ? 'Agent' : 'Agents'}
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded bg-[var(--accent)]/15 text-[var(--accent)] border border-[var(--accent)]/20">
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded bg-[var(--accent-light)] text-[var(--accent)] border border-[var(--accent-medium)]">
                     {template.category}
                   </span>
                 </div>
 
                 {/* Name + description */}
-                <h3 className="text-lg font-bold text-white mb-2 font-mono">
+                <h3 className="text-lg font-bold mb-2 font-mono">
                   {template.name}
                 </h3>
-                <p className="text-sm text-white/50 leading-relaxed mb-5 flex-1">
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 flex-1">
                   {template.description}
                 </p>
 
@@ -199,13 +199,13 @@ export default function AgentsPage() {
                   {template.roles.map((role) => (
                     <span
                       key={role}
-                      className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.06] text-white/60 border border-white/[0.08]"
+                      className="agent-subtle text-[11px] font-mono px-2.5 py-1 rounded-md border"
                     >
                       {role}
                     </span>
                   ))}
                   {template.extraRoles > 0 && (
-                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.06] text-white/40">
+                    <span className="agent-muted text-[11px] font-mono px-2.5 py-1 rounded-md agent-subtle">
                       +{template.extraRoles} more
                     </span>
                   )}
@@ -214,11 +214,11 @@ export default function AgentsPage() {
                 {/* Channels (if any) */}
                 {template.channels && (
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[11px] text-white/30 font-mono">Channels:</span>
+                    <span className="text-[11px] text-[var(--text-muted)] font-mono">Channels:</span>
                     {template.channels.map((ch) => (
                       <span
                         key={ch}
-                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-white/50"
+                        className="agent-subtle text-[11px] font-mono px-2 py-0.5 rounded border"
                       >
                         {ch}
                       </span>
@@ -234,11 +234,11 @@ export default function AgentsPage() {
                         href={SITE.whopUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-white/[0.06] text-white/70 text-sm font-medium hover:bg-white/[0.1] hover:text-white transition-all border border-white/[0.08]"
+                        className="agent-action flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all border"
                       >
                         Use Template <ArrowRight size={14} />
                       </a>
-                      <button className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.06] text-white/40 hover:text-white/70 hover:bg-white/[0.1] transition-all border border-white/[0.08]">
+                      <button className="agent-action w-10 h-10 flex items-center justify-center rounded-lg transition-all border">
                         <Download size={16} />
                       </button>
                     </>
@@ -248,13 +248,13 @@ export default function AgentsPage() {
                         href={SITE.whopUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent)]/20 transition-all border border-[var(--accent)]/20"
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[var(--accent-light)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-medium)] transition-all border border-[var(--accent-medium)]"
                       >
                         <Lock size={13} /> Members Only — Join
                       </a>
                       <button
                         disabled
-                        className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.03] text-white/20 border border-white/[0.05] cursor-not-allowed"
+                        className="agent-action w-10 h-10 flex items-center justify-center rounded-lg border opacity-40 cursor-not-allowed"
                       >
                         <Download size={16} />
                       </button>
