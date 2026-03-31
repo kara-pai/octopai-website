@@ -22,7 +22,7 @@ export function Footer() {
               Platform
             </h4>
             <ul className="space-y-2">
-              {['Agent Hub', 'Training', 'Pricing', 'Resources'].map((item) => (
+              {['Agent Hub', 'Resources'].map((item) => (
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase().replace(' ', '-')}`}
