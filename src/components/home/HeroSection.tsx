@@ -213,9 +213,9 @@ function MachineHero() {
 
       {/* CTA */}
       <div className="mt-8 text-center">
-        <Link href="/signup" className="btn-primary">
+        <a href={SITE.whopUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
           Join Now — $59/month <ArrowRight size={16} />
-        </Link>
+        </a>
         <p className="text-xs text-[var(--text-muted)] mt-3">
           <span className="text-[var(--accent)]">58 spots left</span> at $59/month &nbsp;·&nbsp; Then $79/month
         </p>
