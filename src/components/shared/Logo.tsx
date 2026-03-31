@@ -14,24 +14,24 @@ export function Logo({ size = 28, className = '' }: { size?: number; className?:
       className={className}
     >
       {/* Head — rounded dome */}
-      <ellipse cx="18" cy="14" rx="10" ry="11" fill="#1a1a17" />
+      <ellipse cx="18" cy="14" rx="10" ry="11" fill="currentColor" />
 
       {/* Eyes */}
-      <ellipse cx="14" cy="13" rx="2.2" ry="2.5" fill="#fafaf7" />
-      <ellipse cx="22" cy="13" rx="2.2" ry="2.5" fill="#fafaf7" />
-      <circle cx="14.5" cy="13.2" r="1.1" fill="#1a1a17" />
-      <circle cx="22.5" cy="13.2" r="1.1" fill="#1a1a17" />
+      <ellipse cx="14" cy="13" rx="2.2" ry="2.5" fill="var(--bg-primary, #fafaf7)" />
+      <ellipse cx="22" cy="13" rx="2.2" ry="2.5" fill="var(--bg-primary, #fafaf7)" />
+      <circle cx="14.5" cy="13.2" r="1.1" fill="currentColor" />
+      <circle cx="22.5" cy="13.2" r="1.1" fill="currentColor" />
 
       {/* Tentacles — 8 flowing lines with amber tips */}
       <g strokeWidth="2" strokeLinecap="round" fill="none">
-        <path d="M10 22C8 25 5 27 4 30" stroke="#1a1a17" />
-        <path d="M12 23C11 26 9 29 8 32" stroke="#1a1a17" />
-        <path d="M15 24C14.5 27 14 30 13 33" stroke="#1a1a17" />
-        <path d="M18 24.5C18 28 18 31 18 34" stroke="#1a1a17" />
-        <path d="M21 24C21.5 27 22 30 23 33" stroke="#1a1a17" />
-        <path d="M24 23C25 26 27 29 28 32" stroke="#1a1a17" />
-        <path d="M26 22C28 25 31 27 32 30" stroke="#1a1a17" />
-        <path d="M27.5 20C30 22 32 23 34 25" stroke="#1a1a17" />
+        <path d="M10 22C8 25 5 27 4 30" stroke="currentColor" />
+        <path d="M12 23C11 26 9 29 8 32" stroke="currentColor" />
+        <path d="M15 24C14.5 27 14 30 13 33" stroke="currentColor" />
+        <path d="M18 24.5C18 28 18 31 18 34" stroke="currentColor" />
+        <path d="M21 24C21.5 27 22 30 23 33" stroke="currentColor" />
+        <path d="M24 23C25 26 27 29 28 32" stroke="currentColor" />
+        <path d="M26 22C28 25 31 27 32 30" stroke="currentColor" />
+        <path d="M27.5 20C30 22 32 23 34 25" stroke="currentColor" />
       </g>
 
       {/* Amber tips on tentacles */}

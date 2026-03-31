@@ -3,6 +3,7 @@ import { Geist_Mono } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { AsciiBackground } from '@/components/shared/AsciiBackground';
+import { ThemeProvider } from '@/lib/theme-context';
 import './globals.css';
 
 const mono = Geist_Mono({
@@ -24,12 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${mono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-mono bg-[var(--bg-primary)] text-[var(--text-primary)]">
-        <AsciiBackground />
-        {/* Subtle noise */}
-        <Header />
-        <main className="flex-1 relative z-10">{children}</main>
-        <Footer />
+      <body className="min-h-full flex flex-col font-mono">
+        <ThemeProvider>
+          <AsciiBackground />
+          <Header />
+          <main className="flex-1 relative z-10">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

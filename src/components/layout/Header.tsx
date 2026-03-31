@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { NAV_LINKS, SITE } from '@/lib/constants';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, Bot } from 'lucide-react';
 import { Logo } from '@/components/shared/Logo';
+import { useTheme } from '@/lib/theme-context';
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { mode, toggle } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--bg-primary)]/90 backdrop-blur-md">
@@ -33,12 +35,32 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/login"
-            className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+          {/* Human / Machine toggle */}
+          <button
+            onClick={toggle}
+            className="flex items-center h-8 rounded-lg border border-[var(--border)] overflow-hidden text-[12px] font-medium"
+            aria-label={`Switch to ${mode === 'human' ? 'machine' : 'human'} mode`}
           >
-            Login
-          </Link>
+            <span
+              className={`flex items-center gap-1.5 px-3 h-full transition-all ${
+                mode === 'human'
+                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+              }`}
+            >
+              <User size={12} /> Human
+            </span>
+            <span
+              className={`flex items-center gap-1.5 px-3 h-full transition-all ${
+                mode === 'machine'
+                  ? 'bg-[var(--accent)] text-[#0a0a0d]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+              }`}
+            >
+              <Bot size={12} /> Machine
+            </span>
+          </button>
+
           <Link href="/signup" className="btn-primary !py-2 !px-5 !text-[13px]">
             Get Started →
           </Link>
@@ -68,10 +90,32 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-[var(--border)] pt-3 mt-1 flex flex-col gap-2">
-              <Link href="/login" className="text-sm text-[var(--text-secondary)]">
-                Login
-              </Link>
+            <div className="border-t border-[var(--border)] pt-3 mt-1 flex flex-col gap-3">
+              {/* Mobile toggle */}
+              <button
+                onClick={toggle}
+                className="flex items-center h-9 rounded-lg border border-[var(--border)] overflow-hidden text-[12px] font-medium self-start"
+              >
+                <span
+                  className={`flex items-center gap-1.5 px-3 h-full transition-all ${
+                    mode === 'human'
+                      ? 'bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                      : 'text-[var(--text-muted)]'
+                  }`}
+                >
+                  <User size={12} /> Human
+                </span>
+                <span
+                  className={`flex items-center gap-1.5 px-3 h-full transition-all ${
+                    mode === 'machine'
+                      ? 'bg-[var(--accent)] text-[#0a0a0d]'
+                      : 'text-[var(--text-muted)]'
+                  }`}
+                >
+                  <Bot size={12} /> Machine
+                </span>
+              </button>
+
               <Link href="/signup" className="btn-primary text-center">
                 Get Started →
               </Link>

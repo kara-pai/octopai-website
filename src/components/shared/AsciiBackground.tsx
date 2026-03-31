@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTheme } from '@/lib/theme-context';
 
-// Agent code characters — code symbols, brackets, operators, short keywords
-// Falls in vertical columns like the Matrix but with real code feel
 const CODE_CHARS =
   '{}[]()<>=+-*/|&^%$#@!?:;.,~01' +
   'abcdefghijklmnopqrstuvwxyz' +
@@ -21,6 +20,7 @@ interface Column {
 
 export function AsciiBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { mode } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,7 +42,6 @@ export function AsciiBackground() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Build columns
     const colCount = Math.ceil(w / COL_GAP);
     const columns: Column[] = [];
 
@@ -67,9 +66,15 @@ export function AsciiBackground() {
 
     let animId: number;
 
+    // Colors adapt to mode
+    const isHuman = mode === 'human';
+    const fadeBg = isHuman ? 'rgba(250, 250, 247, 0.15)' : 'rgba(10, 10, 13, 0.12)';
+    const headColor = isHuman ? 'rgba(212, 98, 10, 0.14)' : 'rgba(232, 122, 32, 0.7)';
+    const nearColor = isHuman ? 'rgba(212, 98, 10, 0.09)' : 'rgba(232, 122, 32, 0.4)';
+    const tailColor = isHuman ? 'rgba(26, 26, 23, 0.06)' : 'rgba(232, 122, 32, 0.12)';
+
     const draw = () => {
-      // Soft fade instead of hard clear — leaves gentle trails
-      ctx.fillStyle = 'rgba(250, 250, 247, 0.15)';
+      ctx.fillStyle = fadeBg;
       ctx.fillRect(0, 0, w, h);
       ctx.font = `${FONT_SIZE}px "Geist Mono", monospace`;
 
@@ -81,19 +86,21 @@ export function AsciiBackground() {
           const progress = j / col.length;
 
           if (j === 0) {
-            // Head — darkest, most visible
-            ctx.fillStyle = 'rgba(212, 98, 10, 0.14)';
+            ctx.fillStyle = headColor;
           } else if (progress < 0.25) {
-            // Near head — amber tinted
-            ctx.fillStyle = `rgba(212, 98, 10, ${0.09 - progress * 0.15})`;
+            const alpha = isHuman ? 0.09 - progress * 0.15 : 0.4 - progress * 0.8;
+            ctx.fillStyle = isHuman
+              ? `rgba(212, 98, 10, ${Math.max(alpha, 0.01)})`
+              : `rgba(232, 122, 32, ${Math.max(alpha, 0.05)})`;
           } else {
-            // Tail — fading neutral
-            ctx.fillStyle = `rgba(26, 26, 23, ${0.06 - progress * 0.04})`;
+            const alpha = isHuman ? 0.06 - progress * 0.04 : 0.12 - progress * 0.1;
+            ctx.fillStyle = isHuman
+              ? `rgba(26, 26, 23, ${Math.max(alpha, 0.01)})`
+              : `rgba(232, 122, 32, ${Math.max(alpha, 0.02)})`;
           }
 
           ctx.fillText(col.chars[j], col.x, charY);
 
-          // Randomly mutate chars
           if (Math.random() < 0.015) {
             col.chars[j] = CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
           }
@@ -101,7 +108,6 @@ export function AsciiBackground() {
 
         col.y += col.speed;
 
-        // Reset off-screen columns
         if (col.y - col.length * FONT_SIZE > h) {
           col.y = -col.length * FONT_SIZE - Math.random() * 300;
           col.speed = 0.3 + Math.random() * 1.2;
@@ -119,7 +125,7 @@ export function AsciiBackground() {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animId);
     };
-  }, []);
+  }, [mode]);
 
   return (
     <canvas

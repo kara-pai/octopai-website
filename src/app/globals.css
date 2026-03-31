@@ -26,6 +26,47 @@
   --border-strong: rgba(0, 0, 0, 0.2);
 }
 
+/* Machine mode — dark theme */
+[data-mode="machine"] {
+  --bg-primary: #0a0a0d;
+  --bg-secondary: #111114;
+  --bg-card: #161619;
+  --bg-hover: #1c1c20;
+  --bg-elevated: #1e1e22;
+  --bg-machine: #0a0a0d;
+  --text-primary: #fafaf7;
+  --text-secondary: #a1a19a;
+  --text-muted: #5c5c56;
+  --text-inverse: #0a0a0d;
+  --accent: #e87a20;
+  --accent-hover: #d4620a;
+  --accent-light: rgba(232, 122, 32, 0.12);
+  --accent-medium: rgba(232, 122, 32, 0.2);
+  --success: #4ade80;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.2);
+}
+
+[data-mode="machine"] .card {
+  box-shadow: none;
+}
+
+[data-mode="machine"] .card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-mode="machine"] .btn-primary {
+  background: var(--accent);
+  color: #0a0a0d;
+}
+
+[data-mode="machine"] .tag-muted {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 @theme inline {
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
